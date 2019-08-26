@@ -1,0 +1,32 @@
+{
+    "peacock.color": "#0e1116",
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#222935",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#744b5a",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "titleBar.activeBackground": "#0e1116",
+        "titleBar.inactiveBackground": "#0e111699",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveForeground": "#e7e7e799",
+        "statusBar.background": "#0e1116",
+        "statusBarItem.hoverBackground": "#222935",
+        "statusBar.foreground": "#e7e7e7"
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/build/": true
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/build/packages/**/*": true
+    },
+    "runOnSave.commands": [{ "runIn": "terminal", "command": "cd ${workspaceFolder} ; flutter packages pub global run webdev build" }]
+}

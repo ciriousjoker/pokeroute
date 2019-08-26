@@ -1,0 +1,32 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Webserver",
+            "type": "shell",
+            "command": "cd build/ ; python3.7 -m http.server 8080",
+            "problemMatcher": []
+        },
+        {
+            "label": "!currently broken! Deploy",
+            "type": "shell",
+            "command": "firebase deploy",
+            "problemMatcher": [],
+            "dependsOn": ["Build (release)"]
+        },
+        {
+            "label": "!currently broken! Build (release)",
+            "type": "shell",
+            "command": "flutter packages pub global run webdev build -v",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build (debug)",
+            "type": "shell",
+            "command": "flutter packages pub global run webdev build -v --no-release",
+            "problemMatcher": []
+        }
+    ]
+}
