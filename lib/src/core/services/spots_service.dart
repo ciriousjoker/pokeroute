@@ -1,14 +1,14 @@
 import 'package:pokeapi/model/utils/common.dart';
-import 'package:pokeroutes/src/core/helper/spot_coordinates.dart';
-import 'package:pokeroutes/src/core/models/spot.dart';
-import 'package:pokeroutes/src/core/services/base_service.dart';
-import 'package:pokeroutes/src/core/services/route_service.dart';
-import 'package:pokeroutes/locator.dart';
+import 'package:pokeroute/src/core/helper/spot_coordinates.dart';
+import 'package:pokeroute/src/core/models/spot.dart';
+import 'package:pokeroute/src/core/services/base_service.dart';
+import 'package:pokeroute/src/core/services/route_service.dart';
+import 'package:pokeroute/locator.dart';
 
 class SpotsService extends BaseService {
   RouteService routeService = locator<RouteService>();
 
-  List<Spot> _spots = List();
+  final List<Spot> _spots = [];
   // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   //     .map((index) => Spot(
   //         id: index,
@@ -33,7 +33,7 @@ class SpotsService extends BaseService {
       String name,
       SpotCoordinates coordinates,
       NamedAPIResource pokemon}) {
-    Spot ret = Spot(
+    var ret = Spot(
         id: id ?? _getNextSpotId(),
         name: name ?? "",
         coordinates: coordinates,
@@ -43,7 +43,7 @@ class SpotsService extends BaseService {
   }
 
   Spot getSpot(int id) {
-    for (int i = 0; i < spots.length; i++) {
+    for (var i = 0; i < spots.length; i++) {
       if (spots[i].id == id) {
         return spots[i];
       }
@@ -63,7 +63,7 @@ class SpotsService extends BaseService {
 
   Future<bool> setSpot(Spot spot) async {
     if (spot.isValid) {
-      int index = _getSpotIndex(spot.id);
+      var index = _getSpotIndex(spot.id);
       if (index == null) {
         _spots.add(spot);
       } else {
@@ -83,7 +83,7 @@ class SpotsService extends BaseService {
     print("removeSpot() | Spots: " + _spots.toString());
     print("removeSpot() | Id: " + id.toString());
 
-    int index = _getSpotIndex(id);
+    var index = _getSpotIndex(id);
     _spots.removeAt(index);
 
     print("removeSpot() | Spots (after): " + _spots.toString());
@@ -93,7 +93,7 @@ class SpotsService extends BaseService {
   }
 
   int _getSpotIndex(int id) {
-    for (int i = 0; i < spots.length; i++) {
+    for (var i = 0; i < spots.length; i++) {
       if (spots[i].id == id) {
         return i;
       }

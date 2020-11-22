@@ -1,6 +1,5 @@
-import 'package:flutter_web/material.dart';
-import 'package:flutter_web/widgets.dart';
-import 'package:pokeroutes/src/ui/views/main_view.dart';
+import 'package:flutter/material.dart';
+import 'package:pokeroute/src/ui/views/main_view.dart';
 
 const String initialRoute = "/";
 

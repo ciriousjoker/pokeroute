@@ -1,7 +1,7 @@
-import 'package:flutter_web/material.dart';
-import 'package:pokeroutes/locator.dart';
+import 'package:flutter/material.dart';
+import 'package:pokeroute/locator.dart';
 import 'package:provider/provider.dart';
-import 'package:pokeroutes/src/core/viewmodels/base_model.dart';
+import 'package:pokeroute/src/core/viewmodels/base_model.dart';
 
 class BaseView<T extends BaseModel> extends StatefulWidget {
   final Widget Function(BuildContext context, T model, Widget child) builder;

@@ -1,10 +1,10 @@
-import 'package:pokeroutes/locator.dart';
-import 'package:pokeroutes/src/core/helper/cooldown.dart';
-import 'package:pokeroutes/src/core/models/optimized_route.dart';
-import 'package:pokeroutes/src/core/models/spot.dart';
-import 'package:pokeroutes/src/core/services/base_service.dart';
-import 'package:pokeroutes/src/core/helper/shortest_path.dart';
-import 'package:pokeroutes/src/core/services/spots_service.dart';
+import 'package:pokeroute/locator.dart';
+import 'package:pokeroute/src/core/helper/cooldown.dart';
+import 'package:pokeroute/src/core/models/optimized_route.dart';
+import 'package:pokeroute/src/core/models/spot.dart';
+import 'package:pokeroute/src/core/services/base_service.dart';
+import 'package:pokeroute/src/core/helper/shortest_path.dart';
+import 'package:pokeroute/src/core/services/spots_service.dart';
 
 class RouteService extends BaseService {
   OptimizedRoute currentRoute;
@@ -30,7 +30,7 @@ class RouteService extends BaseService {
   }
 
   List<Spot> get spotsSorted =>
-      currentRoute != null ? currentRoute.spotsSorted : List();
+      currentRoute != null ? currentRoute.spotsSorted : [];
 
   String get routeHash => currentRoute != null ? currentRoute.hash : null;
 
@@ -52,8 +52,6 @@ class RouteService extends BaseService {
   }
 
   int get distanceTotal {
-    print(
-        "distanceTotal() | TODO: Remove this, it's not needed and also calculated wrong");
     printLocations();
     return spotsSorted[0].distanceTo(spotsSorted.last.coordinates);
   }
@@ -79,9 +77,11 @@ class RouteService extends BaseService {
     print("moveToTargetLocation()");
     printLocations();
     idActiveLocation = id;
-    int nextIndex = currentRoute.getSortedSpotIndex(idActiveLocation + 1);
+    var nextIndex = currentRoute.getSortedSpotIndex(idActiveLocation + 1);
+    if (nextIndex == null) return;
+
     do {
-      idTargetLocation = spotsSorted[++nextIndex].id;
+      idTargetLocation = spotsSorted[nextIndex++].id;
     } while (locator<SpotsService>().getSpot(idTargetLocation).visited &&
         nextIndex < spotsSorted.length - 1);
     printLocations();

@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:gpx/gpx.dart';
-import 'package:pokeroutes/src/core/models/spot.dart';
+import 'package:pokeroute/src/core/models/spot.dart';
 
 class OptimizedRoute {
   int id = Random().nextInt(100);
@@ -12,12 +12,12 @@ class OptimizedRoute {
     return spotsSorted.length;
   }
 
-  List<Spot> spots = List();
+  List<Spot> spots = [];
   // List<int> sortedIndices = List();
-  List<Spot> spotsSorted = List();
+  List<Spot> spotsSorted = [];
 
   String get hash {
-    String retHash = "";
+    var retHash = "";
     spotsSorted.forEach((spot) => retHash += spot.id.toString());
     return retHash;
   }
@@ -28,7 +28,7 @@ class OptimizedRoute {
   // int secondsDuration
 
   OptimizedRoute(List<Spot> spots) {
-    this.spots = spots ?? List();
+    this.spots = spots ?? [];
   }
 
   Spot getSpot(int id) {
@@ -39,7 +39,7 @@ class OptimizedRoute {
     // print("getSpotIndex() | spotsSorted: " + spotsSorted.toString());
     // print("getSpotIndex() | id: " + id.toString());
 
-    for (int i = 0; i < spotsSorted.length; i++) {
+    for (var i = 0; i < spotsSorted.length; i++) {
       if (spotsSorted[i].id == id) {
         // print("Returned index: " + i.toString());
         return i;
@@ -61,7 +61,7 @@ class OptimizedRoute {
     // print("[OptimizedRoute $id] Spots: " + spots.toString());
     // print("[OptimizedRoute $id] SortedIndices: " + sortedIndices.toString());
 
-    String line = "";
+    var line = "";
 
     try {
       if (spots.isEmpty) {
@@ -72,15 +72,15 @@ class OptimizedRoute {
         return "[OptimizedRoute $id] Spots aren't sorted yet.";
       }
 
-      Spot spotCurrent = spotsSorted[0];
+      var spotCurrent = spotsSorted[0];
 
       line += "[OptimizedRoute $id] [Distance total: " +
           distance.toString() +
           "] " +
           spotCurrent.name;
-      for (int i = 1; i < spotsSorted.length; i++) {
-        Spot spotNext = spotsSorted[i];
-        int distance = spotCurrent.distanceTo(spotNext.coordinates);
+      for (var i = 1; i < spotsSorted.length; i++) {
+        var spotNext = spotsSorted[i];
+        var distance = spotCurrent.distanceTo(spotNext.coordinates);
         // Distance().distance(spot.coordinates, spotNext.coordinates);
         line += " -( " + distance.toString() + " )> " + spotNext.name;
         spotCurrent = spotNext;
@@ -110,17 +110,15 @@ class OptimizedRoute {
 
     // generate xml string
     var gpxString = GpxWriter().asString(gpx, pretty: true);
-    print(gpxString);
     return gpxString;
   }
 
   int _calculateDistance() {
-    int retDistance = 0;
-    Spot lastSpot = spotsSorted[0];
-    for (int i = 0; i < spotsSorted.length - 1; ++i) {
-      Spot nextSpot = spotsSorted[i + 1];
-      int distance = lastSpot.distanceTo(nextSpot.coordinates);
-      // print(lastSpot.name + " -( " + distance.toString() + " )> " + nextSpot.name);
+    var retDistance = 0;
+    var lastSpot = spotsSorted[0];
+    for (var i = 0; i < spotsSorted.length - 1; ++i) {
+      var nextSpot = spotsSorted[i + 1];
+      var distance = lastSpot.distanceTo(nextSpot.coordinates);
       retDistance += distance;
       lastSpot = nextSpot;
     }

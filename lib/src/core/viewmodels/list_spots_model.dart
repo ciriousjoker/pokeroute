@@ -1,5 +1,5 @@
-import 'package:pokeroutes/src/core/models/spot.dart';
-import 'package:pokeroutes/src/core/viewmodels/base_model.dart';
+import 'package:pokeroute/src/core/models/spot.dart';
+import 'package:pokeroute/src/core/viewmodels/base_model.dart';
 
 class ListSpotsModel extends BaseModel {
   List<Spot> get spots => spotsService.spots;
@@ -11,12 +11,12 @@ class ListSpotsModel extends BaseModel {
   void resetCooldown() => routeService.resetCooldown();
 
   bool isVisited(int id) {
-    Spot spot = spotsService.getSpot(id);
+    var spot = spotsService.getSpot(id);
     return spot != null ? spot.visited : false;
   }
 
   void toggleVisited(int id) {
-    Spot spot = spotsService.getSpot(id);
+    var spot = spotsService.getSpot(id);
     if (spot != null) {
       spot.visited = !spot.visited;
     }
@@ -31,7 +31,7 @@ class ListSpotsModel extends BaseModel {
   Duration get cooldownElapsed => DateTime.now().difference(cooldownStart);
   double get cooldownProgress {
     try {
-      double ret = cooldownElapsed.inSeconds / cooldownTotal.inSeconds;
+      var ret = cooldownElapsed.inSeconds / cooldownTotal.inSeconds;
       if (ret.isInfinite) {
         ret = 1;
       }

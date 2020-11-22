@@ -1,6 +1,6 @@
-import 'package:pokeroutes/src/core/models/optimized_route.dart';
-import 'package:pokeroutes/src/core/models/spot.dart';
-import 'package:pokeroutes/src/core/viewmodels/base_model.dart';
+import 'package:pokeroute/src/core/models/optimized_route.dart';
+import 'package:pokeroute/src/core/models/spot.dart';
+import 'package:pokeroute/src/core/viewmodels/base_model.dart';
 
 class CurrentSpotModel extends BaseModel {
   List<Spot> get spots => spotsService.spots;
@@ -17,7 +17,7 @@ class CurrentSpotModel extends BaseModel {
   Spot getSpot(int id) => spotsService.getSpot(id);
 
   bool get visited {
-    Spot spot = getSpot(idTargetLocation);
+    var spot = getSpot(idTargetLocation);
     return spot != null ? spot.visited : false;
   }
 
@@ -25,6 +25,7 @@ class CurrentSpotModel extends BaseModel {
 
   void setVisited(Spot spot, bool visited) {
     print("setVisited()");
+    if (spot == null) return;
     spot.visited = visited;
 
     // Move the player to the next waypoint

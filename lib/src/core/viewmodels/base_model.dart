@@ -1,8 +1,8 @@
 import 'dart:math';
-import 'package:flutter_web/widgets.dart';
-import 'package:pokeroutes/src/core/services/route_service.dart';
-import 'package:pokeroutes/src/core/services/spots_service.dart';
-import 'package:pokeroutes/locator.dart';
+import 'package:flutter/material.dart';
+import 'package:pokeroute/src/core/services/route_service.dart';
+import 'package:pokeroute/src/core/services/spots_service.dart';
+import 'package:pokeroute/locator.dart';
 
 class BaseModel extends ChangeNotifier {
   final int id = Random.secure().nextInt(1000);
@@ -12,14 +12,10 @@ class BaseModel extends ChangeNotifier {
 
   BaseModel() {
     spotsService.subscribe(() {
-      print("[BaseModel] onDataChanged() for SpotsService " +
-          spotsService.spots.toString());
       notifyListeners();
     });
 
     routeService.subscribe(() {
-      print("[BaseModel] onDataChanged() for RouteService " +
-          routeService.currentRoute.toString());
       notifyListeners();
     });
   }

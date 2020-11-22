@@ -1,10 +1,10 @@
-import 'package:flutter_web/material.dart';
-import 'package:pokeroutes/src/core/viewmodels/base_model.dart';
-import 'package:pokeroutes/src/core/viewmodels/current_spot_model.dart';
-import 'package:pokeroutes/src/core/viewmodels/list_spot_entries_model.dart';
-import 'package:pokeroutes/src/core/viewmodels/list_spots_model.dart';
-import 'package:pokeroutes/locator.dart';
-import 'package:pokeroutes/src/ui/router.dart';
+import 'package:flutter/material.dart';
+import 'package:pokeroute/src/core/viewmodels/base_model.dart';
+import 'package:pokeroute/src/core/viewmodels/current_spot_model.dart';
+import 'package:pokeroute/src/core/viewmodels/list_spot_entries_model.dart';
+import 'package:pokeroute/src/core/viewmodels/list_spots_model.dart';
+import 'package:pokeroute/locator.dart';
+import 'package:pokeroute/src/ui/router.dart' as router;
 import 'package:provider/provider.dart';
 
 void main() {
@@ -17,15 +17,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(builder: (context) => BaseModel()),
-        ChangeNotifierProvider(builder: (context) => ListSpotsModel()),
-        ChangeNotifierProvider(builder: (context) => ListSpotEntriesModel()),
-        ChangeNotifierProvider(builder: (context) => CurrentSpotModel()),
+        ChangeNotifierProvider(create: (context) => BaseModel()),
+        ChangeNotifierProvider(create: (context) => ListSpotsModel()),
+        ChangeNotifierProvider(create: (context) => ListSpotEntriesModel()),
+        ChangeNotifierProvider(create: (context) => CurrentSpotModel()),
       ],
       child: MaterialApp(
-        title: 'PokeRoutes',
+        title: 'PokeRoute',
         theme: ThemeData(),
-        onGenerateRoute: Router.generateRoute,
+        onGenerateRoute: router.Router.generateRoute,
       ),
     );
   }

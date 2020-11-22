@@ -1,11 +1,11 @@
 import 'dart:math';
 
-import 'package:flutter_web/material.dart';
+import 'package:flutter/material.dart';
 import 'package:md2_tab_indicator/md2_tab_indicator.dart';
-import 'package:pokeroutes/src/ui/views/current_spot_view.dart';
-import 'package:pokeroutes/src/ui/views/list_spot_entries_view.dart';
+import 'package:pokeroute/src/ui/views/current_spot_view.dart';
+import 'package:pokeroute/src/ui/views/list_spot_entries_view.dart';
 import 'package:intl/intl.dart';
-import 'package:pokeroutes/src/ui/views/list_spots_view.dart';
+import 'package:pokeroute/src/ui/views/list_spots_view.dart';
 import 'package:responsive/flex_widget.dart';
 import 'package:responsive/responsive.dart';
 import 'package:responsive/responsive_row.dart';
@@ -35,10 +35,10 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    bool isMobile =
+    var isMobile =
         Responsive.gridSize(MediaQuery.of(context).size.width) < Responsive.md;
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
     team = teams[Random().nextInt(3)];
 
     return Container(
@@ -98,7 +98,7 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
   }
 
   Widget getDesktopLayout(BuildContext context) {
-    final double columnHeight = MediaQuery.of(context).size.height * 0.8;
+    final columnHeight = MediaQuery.of(context).size.height * 0.8;
 
     return Center(
       child: ResponsiveRow(

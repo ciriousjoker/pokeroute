@@ -1,13 +1,13 @@
 targets:
-    $default:
-        builders:
-            build_web_compilers|entrypoint:
-                dev_options:
-                    compiler: dart2js
-                    dart2js_args:
-                        - -O1
-                        - --minify
-                release_options:
-                    compiler: dart2js
-                    dart2js_args:
-                        - -O4
+  $default:
+    builders:
+      build_web_compilers|entrypoint:
+        dev_options:
+          compiler: dart2js
+          dart2js_args:
+            - -O1
+            - --minify
+        release_options:
+          compiler: dart2js
+          dart2js_args:
+            - -O4

@@ -1,5 +1,5 @@
 class Cooldown {
-  static Map<int, int> _tableKmToMins = {
+  static final Map<int, int> _tableKmToMins = {
     0: 0,
     2: 1,
     4: 3,
@@ -19,8 +19,8 @@ class Cooldown {
   };
 
   static int getCooldownForDistance(int distanceInMeter) {
-    int cooldown = 0;
-    for (int distanceKeyInKm in _tableKmToMins.keys) {
+    var cooldown = 0;
+    for (var distanceKeyInKm in _tableKmToMins.keys) {
       if (distanceKeyInKm * 1000 <= distanceInMeter) {
         cooldown = _tableKmToMins[distanceKeyInKm];
       }

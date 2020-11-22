@@ -1,7 +1,7 @@
-import 'package:flutter_web/foundation.dart';
+import 'package:flutter/foundation.dart';
 
 class BaseService {
-  List<VoidCallback> callbacks = List();
+  List<VoidCallback> callbacks = [];
   void subscribe(VoidCallback callback) {
     callbacks.add(callback);
   }
@@ -11,7 +11,7 @@ class BaseService {
   }
 
   void triggerCallbacks() {
-    for (VoidCallback callback in callbacks) {
+    for (var callback in callbacks) {
       callback();
     }
   }

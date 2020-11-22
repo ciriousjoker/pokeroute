@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:duration/duration.dart';
-import 'package:flutter_web/material.dart';
-import 'package:pokeroutes/src/core/viewmodels/list_spots_model.dart';
-import 'package:pokeroutes/src/ui/views/base_view.dart';
+import 'package:flutter/material.dart';
+import 'package:pokeroute/src/core/viewmodels/list_spots_model.dart';
+import 'package:pokeroute/src/ui/views/base_view.dart';
 
 class DistanceBarWidget extends StatefulWidget {
   const DistanceBarWidget({Key key}) : super(key: key);
@@ -26,7 +26,7 @@ class _DistanceBarWidgetState extends State<DistanceBarWidget> {
     return BaseView<ListSpotsModel>(builder: (context, model, child) {
       this.model = model;
 
-      double progress = (model.cooldownProgress ?? 0);
+      var progress = (model.cooldownProgress ?? 0);
 
       return Container(
         child: Column(

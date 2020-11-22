@@ -12,8 +12,8 @@ class SpotCoordinates extends LatLng {
   SpotCoordinates.fromLatLng(LatLng coords)
       : super(coords.latitude, coords.longitude);
 
-  static fromString(String coords) {
-    LatLng parsed = _parseCoordinates(coords);
+  static SpotCoordinates fromString(String coords) {
+    var parsed = _parseCoordinates(coords);
 
     return parsed != null
         ? SpotCoordinates.fromCoords(parsed.latitude, parsed.longitude)
@@ -23,25 +23,25 @@ class SpotCoordinates extends LatLng {
   static LatLng _parseCoordinates(String text) {
     // Regular expression that filters for only valid gps coordinates separated by " " or "," plus any number of " " before/after
     // See this for details: https://regexr.com/4jm62
-    RegExp regExp = RegExp(
+    var regExp = RegExp(
         r"[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)\s*[ |,]\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)");
 
     if (!regExp.hasMatch(text)) {
       return null;
     }
 
-    String match = regExp.firstMatch(text).group(0).toString();
+    var match = regExp.firstMatch(text).group(0).toString();
 
     print("Matched coordinates: " + match.toString());
 
-    List<String> splitMatches = match.split(RegExp(r" |,"));
-    String stringLatitude = splitMatches[0];
-    String stringLongitude = splitMatches[splitMatches.length - 1];
+    var splitMatches = match.split(RegExp(r" |,"));
+    var stringLatitude = splitMatches[0];
+    var stringLongitude = splitMatches[splitMatches.length - 1];
 
     print("[$text]  => ($stringLongitude|$stringLatitude)");
 
-    double latitude = double.parse(stringLatitude);
-    double longitude = double.parse(stringLongitude);
+    var latitude = double.parse(stringLatitude);
+    var longitude = double.parse(stringLongitude);
 
     return LatLng(latitude, longitude);
   }

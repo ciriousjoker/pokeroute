@@ -1,13 +1,13 @@
 // import 'dart:math';
 
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
-import 'package:flutter_web/material.dart';
+import 'package:flutter/material.dart';
 import 'package:pokeapi/model/utils/common.dart';
-import 'package:pokeroutes/locator.dart';
-import 'package:pokeroutes/src/core/helper/spot_coordinates.dart';
-import 'package:pokeroutes/src/core/models/spot.dart';
-import 'package:pokeroutes/src/core/services/pokemon_service.dart';
-import 'package:pokeroutes/src/core/services/spots_service.dart';
+import 'package:pokeroute/locator.dart';
+import 'package:pokeroute/src/core/helper/spot_coordinates.dart';
+import 'package:pokeroute/src/core/models/spot.dart';
+import 'package:pokeroute/src/core/services/pokemon_service.dart';
+import 'package:pokeroute/src/core/services/spots_service.dart';
 
 class SpotEntryListItem extends StatefulWidget {
   final bool addNew;
@@ -18,6 +18,7 @@ class SpotEntryListItem extends StatefulWidget {
   SpotEntryListItem({Key key, this.id, this.addNew = false, this.spot})
       : super(key: key);
 
+  @override
   _SpotEntryListItemState createState() => _SpotEntryListItemState();
 }
 
@@ -101,16 +102,18 @@ class _SpotEntryListItemState extends State<SpotEntryListItem> {
               controller: textEditingControllerCoordinates,
               onChanged: (text) {
                 spot.coordinates = SpotCoordinates.fromString(text);
-                spot.coordinates.setValid();
+                spot?.coordinates?.setValid();
               },
               focusNode: focusNodeCoordinates,
               decoration: getInputDecoration("Coordinates", foregroundColor)),
         ),
       ]),
       trailing: IconButton(
+        tooltip: "Add the spot",
         color: foregroundColor,
         icon: Icon(widget.addNew ? Icons.add : Icons.delete),
         onPressed: () {
+          if (spot?.id == null) return;
           if (widget.addNew) {
             saveSpot(reset: true);
           } else {
@@ -123,7 +126,7 @@ class _SpotEntryListItemState extends State<SpotEntryListItem> {
   }
 
   void saveSpot({bool reset = false}) async {
-    Spot spotProxy = spot;
+    var spotProxy = spot;
     if (reset) {
       resetState();
     }
@@ -160,22 +163,22 @@ class _SpotEntryListItemState extends State<SpotEntryListItem> {
   }
 
   int sortByQuality(String name1, String name2, String searchString) {
-    double quality1 = _getQuality(name1, searchString);
-    double quality2 = _getQuality(name2, searchString);
+    var quality1 = _getQuality(name1, searchString);
+    var quality2 = _getQuality(name2, searchString);
     return quality2.compareTo(quality1);
   }
 
   double _getQuality(String name, String searchString) {
-    double matches = 0;
-    String nameRest = name.toLowerCase();
-    for (int i = 0; i < searchString.length; ++i) {
-      String character = searchString[i].toLowerCase();
+    var matches = 0;
+    var nameRest = name.toLowerCase();
+    for (var i = 0; i < searchString.length; ++i) {
+      var character = searchString[i].toLowerCase();
       if (nameRest.contains(character)) {
         matches++;
         nameRest.replaceFirst(character, "");
       }
     }
-    double quality = matches / name.length.toDouble();
+    var quality = matches / name.length.toDouble();
 
     return quality;
   }
@@ -210,8 +213,8 @@ class _SpotEntryListItemState extends State<SpotEntryListItem> {
         itemSorter: (a, b) =>
             sortByQuality(a.name, b.name, textEditingControllerName.text),
         itemFilter: (suggestion, input) {
-          String name = suggestion.name.toLowerCase();
-          for (int i = 0; i < input.length; ++i) {
+          var name = suggestion.name.toLowerCase();
+          for (var i = 0; i < input.length; ++i) {
             if (!name.contains(input[i].toLowerCase())) {
               return false;
             }
@@ -226,7 +229,7 @@ class _SpotEntryListItemState extends State<SpotEntryListItem> {
             }));
   }
 
-  getInputDecoration(String text, Color color) {
+  InputDecoration getInputDecoration(String text, Color color) {
     return InputDecoration(
         hintText: text,
         hintStyle: TextStyle(color: foregroundColor.withOpacity(0.87)),

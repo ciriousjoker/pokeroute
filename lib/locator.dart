@@ -1,13 +1,13 @@
 import 'package:get_it/get_it.dart';
-import 'package:pokeroutes/src/core/services/pokemon_service.dart';
-import 'package:pokeroutes/src/core/services/route_service.dart';
-import 'package:pokeroutes/src/core/services/spots_service.dart';
-import 'package:pokeroutes/src/core/viewmodels/base_model.dart';
-import 'package:pokeroutes/src/core/viewmodels/current_spot_model.dart';
-import 'package:pokeroutes/src/core/viewmodels/list_spot_entries_model.dart';
-import 'package:pokeroutes/src/core/viewmodels/list_spots_model.dart';
-import 'package:pokeroutes/src/core/viewmodels/main_model.dart';
-import 'package:pokeroutes/src/core/viewmodels/spot_entry_list_item_model.dart';
+import 'package:pokeroute/src/core/services/pokemon_service.dart';
+import 'package:pokeroute/src/core/services/route_service.dart';
+import 'package:pokeroute/src/core/services/spots_service.dart';
+import 'package:pokeroute/src/core/viewmodels/base_model.dart';
+import 'package:pokeroute/src/core/viewmodels/current_spot_model.dart';
+import 'package:pokeroute/src/core/viewmodels/list_spot_entries_model.dart';
+import 'package:pokeroute/src/core/viewmodels/list_spots_model.dart';
+import 'package:pokeroute/src/core/viewmodels/main_model.dart';
+import 'package:pokeroute/src/core/viewmodels/spot_entry_list_item_model.dart';
 
 GetIt locator = GetIt.instance;
 

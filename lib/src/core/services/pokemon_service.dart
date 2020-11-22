@@ -4,26 +4,19 @@ import 'package:pokeapi/model/utils/common.dart';
 import 'package:pokeapi/pokeapi.dart';
 
 class PokemonService {
-  Future<List<NamedAPIResource>> indexPokemon;
-
-  PokemonService() {
-    _loadPokemonIndex();
-  }
+  Future<List<NamedAPIResource>> indexPokemon =
+      PokeAPI.getCommonList<Pokemon>(1, 255);
 
   static Future<String> getPokemonType(int id) async {
     print("Getting type for: " + id.toString());
-    Pokemon pokemon = await PokeAPI.getObject<Pokemon>(id);
+    var pokemon = await PokeAPI.getObject<Pokemon>(id);
     String primaryType;
-    for (Types type in pokemon.types) {
+    for (var type in pokemon.types) {
       if (type.slot == 1) {
         primaryType = type.type.name;
       }
     }
     print("Primary type: " + primaryType);
     return primaryType;
-  }
-
-  void _loadPokemonIndex() async {
-    indexPokemon = PokeAPI.getCommonList<Pokemon>(1, 151);
   }
 }

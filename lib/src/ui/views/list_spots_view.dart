@@ -1,8 +1,8 @@
-import 'package:flutter_web/material.dart';
-import 'package:pokeroutes/src/core/models/spot.dart';
-import 'package:pokeroutes/src/core/viewmodels/list_spots_model.dart';
-import 'package:pokeroutes/src/ui/views/base_view.dart';
-import 'package:pokeroutes/src/ui/widgets/spot_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:pokeroute/src/core/models/spot.dart';
+import 'package:pokeroute/src/core/viewmodels/list_spots_model.dart';
+import 'package:pokeroute/src/ui/views/base_view.dart';
+import 'package:pokeroute/src/ui/widgets/spot_widget.dart';
 
 class ListSpotsView extends StatefulWidget {
   ListSpotsView() : super();
@@ -24,15 +24,15 @@ class _ListSpotsViewState extends State<ListSpotsView> {
         child: Text("Add spots to see your route.",
             style: Theme.of(context)
                 .textTheme
-                .title
+                .headline6
                 .copyWith(color: Colors.white)),
       );
     });
   }
 
   Widget getSpots(List<Spot> spots) {
-    List<SpotWidget> retSteps = List();
-    for (Spot spot in spots) {
+    var retSteps = <SpotWidget>[];
+    for (var spot in spots) {
       retSteps.add(SpotWidget(key: Key(spot.id.toString()), spot: spot));
     }
     return ListView.builder(

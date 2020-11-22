@@ -1,10 +1,10 @@
-import 'package:pokeroutes/src/core/models/optimized_route.dart';
-import 'package:pokeroutes/src/core/models/spot.dart';
+import 'package:pokeroute/src/core/models/optimized_route.dart';
+import 'package:pokeroute/src/core/models/spot.dart';
 
 class ShortestPath {
   List<Spot> spots;
   List<List<int>> graph;
-  List<OptimizedRoute> routes = List();
+  List<OptimizedRoute> routes = [];
 
   ShortestPath({this.spots}) {
     graph = _getGraph(spots);
@@ -12,7 +12,7 @@ class ShortestPath {
   }
 
   List<bool> _resetVisited() {
-    List<bool> retVisited = List(spots.length);
+    var retVisited = List<bool>(spots.length);
     retVisited.fillRange(0, spots.length, false);
     return retVisited;
   }
@@ -27,7 +27,7 @@ class ShortestPath {
       return;
     }
 
-    for (int i = 0; i < spots.length; i++) {
+    for (var i = 0; i < spots.length; i++) {
       if (!currentVisited[i]) {
         _recurse(i, currentVisited, currentRoute);
       }
@@ -36,12 +36,12 @@ class ShortestPath {
   }
 
   Future<OptimizedRoute> getOptimizedRoute() async {
-    for (int i = 0; i < spots.length; i++) {
+    for (var i = 0; i < spots.length; i++) {
       _recurse(i, _resetVisited(), OptimizedRoute(spots));
     }
 
     OptimizedRoute retRoute;
-    for (int i = 0; i < routes.length; i++) {
+    for (var i = 0; i < routes.length; i++) {
       if (retRoute == null || routes[i].distance < retRoute.distance) {
         retRoute = routes[i];
       }
@@ -52,12 +52,12 @@ class ShortestPath {
   }
 
   List<List<int>> _getGraph(List<Spot> spots) {
-    List<List<int>> retGraph = List<List<int>>();
+    var retGraph = <List<int>>[];
 
-    for (final Spot spot in spots) {
-      List<int> distances = List<int>();
+    for (final spot in spots) {
+      var distances = <int>[];
 
-      for (int i = 0; i < spots.length; i++) {
+      for (var i = 0; i < spots.length; i++) {
         distances.add(spot.distanceTo(spots[i].coordinates));
       }
 

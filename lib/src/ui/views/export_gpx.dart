@@ -1,18 +1,18 @@
-import 'package:flutter_web/material.dart';
-import 'package:pokeroutes/locator.dart';
-import 'package:pokeroutes/src/core/services/route_service.dart';
+import 'package:flutter/material.dart';
+import 'package:pokeroute/locator.dart';
+import 'package:pokeroute/src/core/services/route_service.dart';
 
 class ExportGpx extends StatefulWidget {
   ExportGpx({Key key}) : super(key: key);
 
+  @override
   _ExportGpxState createState() => _ExportGpxState();
 }
 
 class _ExportGpxState extends State<ExportGpx> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController textEditingControllerFileName =
-        TextEditingController();
+    var textEditingControllerFileName = TextEditingController();
 
     return Container(
       child: ListTile(
@@ -23,7 +23,6 @@ class _ExportGpxState extends State<ExportGpx> {
             child: Text("Download"),
             onPressed: () {
               print("TODO: Implement download");
-
               try {
                 locator<RouteService>().currentRoute.toGpx();
               } catch (e) {
